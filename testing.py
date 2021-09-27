@@ -1,16 +1,16 @@
-def nilai_ganjil(value):
-    hasil_cek = None
+def nilai_genap(value):
+    output = True
 
-    if value % 2 == 1:
-        hasil_cek = True
+    if value % 2 == 0:
+        output = True
     else:
-        hasil_cek = False
+        output = False
 
-    return hasil_cek
+    return output
 
-nilai = int(input('Nilai berapa yang akan dicek? : '))
+nilai = int(input("Enter your number: "))
 
-if nilai_ganjil(nilai):
-    print("nilai tersebut adalah ganjil")
+if nilai_genap(nilai):
+    print("bilangan tersebut adalah bilangan genap")
 else:
-    print("nilai tersebut adalah genap")
+    print("bilangan tersebut adalah bilangan ganjil")
