@@ -20,10 +20,10 @@ def remove_even(list):
             list.remove(value)
     return list
 
-x = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
-assert remove_odd(x) == [2, 2, 4, 4]
-print(x)
+l = [1, 2, 3, 6, 7, 2, 4, 6, 1, 2, 8, 6, 4]
+assert remove_odd(l) == [2, 2, 2, 4, 4, 6, 6, 6, 8]
+print(l)
 
-a = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
-assert remove_even(a) == [1, 1, 3, 3, 5, 5]
-print(a)
+i = [1, 2, 3, 6, 7, 2, 4, 6, 1, 2, 8, 6, 4]
+assert remove_even(i) == [1, 1, 3, 7]
+print(i)
