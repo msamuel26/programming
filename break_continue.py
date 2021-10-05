@@ -1,20 +1,20 @@
-def sample_break(data):
-    print('sample break')
-    for value in data:
+def sample_break(nilai):
+    print('Sample break')
+    for value in nilai:
         if value == 5:
             break
         else:
             print(value)
 
-def sample_continue(data):
-    print('sample continue')
-    for value in data:
+def sample_continue(nilai):
+    print('Sample continue')
+    for value in nilai:
         if value == 5:
             continue
         else:
             print(value)
 
-o = [1,2,3,4,5,6,7,8,9,10]
-sample_break(o)
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+sample_break(x)
 print('')
-sample_continue(o)
+sample_continue(x)
