@@ -1,20 +1,20 @@
-def sample_break(nilai):
-    print('Sample break')
-    for value in nilai:
-        if value == 5:
+def sample_break(value):
+    print("Sample break")
+    for gukguk in value:
+        if gukguk == 3:
             break
         else:
-            print(value)
+            print(gukguk)
 
-def sample_continue(nilai):
-    print('Sample continue')
-    for value in nilai:
-        if value == 5:
+def sample_continue(value):
+    print("Sample continue")
+    for emprit in value:
+        if emprit == 4:
             continue
         else:
-            print(value)
+            print(emprit)
 
-x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-sample_break(x)
+a = [1, 2, 3, 4, 5, 6]
+sample_break(a)
 print('')
-sample_continue(x)
+sample_continue(a)
