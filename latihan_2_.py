@@ -1,6 +1,4 @@
-# Loop through and print out all even numbers 
-# from the numbers list in the same order they are received. 
-# Don't print any numbers that come after 237 in the sequence.
+# Tolong cetak 7 bilangan pertama atas list
 
 numbers = [
     951, 402, 984, 651, 360, 69, 408, 319, 601, 485, 980, 507, 725, 547, 544,
@@ -12,15 +10,13 @@ numbers = [
     743, 527
 ]
 
-def even_number(value):
-    output = False
-    if value % 2 == 0:
-        output = True
-    return output
+TOTAL_PRINT = 17
 
-for value in numbers:
-    if value == 237:
-        break
-    else:
-        if even_number(value):
-            print(value)
+def print_first_17_numbers(list, value):
+    index = 0
+    while value > 0:
+        print("Nilai list di index: ", index, "adalah", list[index])
+        index = index + 1
+        value = value - 1
+
+print_first_17_numbers(numbers, TOTAL_PRINT)
