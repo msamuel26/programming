@@ -1,5 +1,3 @@
-# Tolong cetak 7 bilangan pertama atas list
-
 numbers = [
     951, 402, 984, 651, 360, 69, 408, 319, 601, 485, 980, 507, 725, 547, 544,
     615, 83, 165, 141, 501, 263, 617, 865, 575, 219, 390, 984, 592, 236, 105, 942, 941,
@@ -10,14 +8,15 @@ numbers = [
     743, 527
 ]
 
-TOTAL_PRINT = 7
+def create_summary(list):
+    a = set(list)
+    res = {}
+    for key in a:
+        hasil = list.count(key)
+        res[key] = hasil
+    return res
 
-def print_first_7_numbers(list, value):
-    index = 0
-    while value > 0:
-        print("Nilai list di index: ", index," adalah ", list[index])
-        index = index + 1
-        value = value - 1 
+print(create_summary(numbers))
 
-print_first_7_numbers(numbers, TOTAL_PRINT) 
-
+list = [1, 1, 2, 2, 3, 3, 3, 3, 4, 4, 5, 5]
+assert create_summary(list) == {1:2, 2:2, 3:4, 4:2, 5:2}
