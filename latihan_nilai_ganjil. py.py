@@ -1,6 +1,5 @@
 def nilai_ganjil(nilai):
     check_result = False
-
     if nilai % 2 == 1:
         check_result = True
     else:

@@ -16,7 +16,20 @@ def create_summary(list):
         res[key] = hasil
     return res
 
-print(create_summary(numbers))
+# prin t(create_summary(numbers))
 
 list = [1, 1, 2, 2, 3, 3, 3, 3, 4, 4, 5, 5]
 assert create_summary(list) == {1:2, 2:2, 3:4, 4:2, 5:2}
+
+def shown_dict_with_more_than_1_in_value(dict):
+    res = {}
+    for key in dict:
+        if dict[key] > 1:
+            res[key] = dict[key]
+    return res
+
+unyil = create_summary(numbers)
+print(unyil)
+print(shown_dict_with_more_than_1_in_value(unyil))
+
+print(shown_dict_with_more_than_1_in_value(create_summary(numbers))) 
