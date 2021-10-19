@@ -76,7 +76,47 @@ def shown_only_even_key_and_with_more_than_1_in_value(input_dict):
 def shown_only_odd_key_and_with_more_than_1_in_value(input_dict):
     output_dict = {}
     for key in input_dict:
-        if odd_number[key] and input_dict[key] > 1:
+        if odd_number(key) and input_dict[key] > 1:
+            output_dict[key] = input_dict[key]
+    return output_dict
+
+def shown_only_even_key_and_with_more_than_1_in_value_with_param(input_dict, max_appeared):
+    output_dict = {}
+    max = 0
+    for key in input_dict:
+        if even_number(key) and input_dict[key] and max < max_appeared:
+            output_dict[key] = input_dict[key]
+            max = max + 1
+    return output_dict
+
+# Tolong tampil 3 key ganjil pertama dan 2 key genap pertama
+
+def shown_first_3_odd_keys_and_first_3_even_keys(input_dict, input_odd, input_even):
+    output_dict = {}
+    max = 0
+    for key in input_dict:
+        if even_number(key) and max < input_even:
+            output_dict[key] = input_dict[key]
+            max = max + 1
+    
+    max = 0
+    for key in input_dict:
+        if odd_number(key) and max < input_odd:
+            output_dict[key] = input_dict[key]
+            max = max + 1
+    return output_dict
+
+def shown_first_4_even_keys_and_first_4_odd_keys_and_both_of_them_with_more_than_1_in_value(input_dict, input_even, input_odd):
+    output_dict = {}
+    max = 0
+    for key in input_dict:
+        if even_number(key) and max < input_even and input_dict[key] > 1:
+            output_dict[key] = input_dict[key]
+            max = max + 1
+
+    max = 0
+    for key in input_dict:
+        if odd_number(key) and max < input_odd and input_dict[key] > 1:
             output_dict[key] = input_dict[key]
     return output_dict
 
@@ -100,8 +140,16 @@ print("List yang menampilkan key yang hanya ganjil")
 print(shown_only_odd_key(unyil))
 print('')
 print("List yang menampilkan key genap dan valuenya lebih dari 1")
-print('')
 print(shown_only_even_key_and_with_more_than_1_in_value(unyil))
+print('')
+print("List yang menampilkan hanya key genap dan valuenya lebih dari 1 dengan menggunakan param")
+print(shown_only_even_key_and_with_more_than_1_in_value_with_param(unyil, 2))
+print('')
+print("List yang menampilkan 3 key ganjil pertama dan 3 key genap pertama")
+print(shown_first_3_odd_keys_and_first_3_even_keys(unyil, 3, 3))
+print('')
+print("List yang menampilkan 4 key genap pertama dan 4 key ganjil pertama dan kedua valuenya lebih dari 1")
+print(shown_first_4_even_keys_and_first_4_odd_keys_and_both_of_them_with_more_than_1_in_value(unyil, 4, 4))
 
 
 
