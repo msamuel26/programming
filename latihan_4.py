@@ -166,6 +166,40 @@ def shown_odd_even_keys_sequentially(input_dict, input_count_odd, input_count_ev
 
     return output_dict 
 
+
+
+
+
+def shown_even_odd_keys_sequentially(input_dict, input_count_even, input_count_odd):
+    output_dict = {}
+
+    tampung_genap = shown_only_even_key(input_dict)
+    tampung_ganjil = shown_only_odd_key(input_dict)
+    print("List yang menampilkan hanya key genap")
+    print(tampung_genap)
+    print('')
+    print("List yang menampilkan hanya key ganjil")
+    print(tampung_ganjil)
+    print('')
+
+    temp_count_even = 0
+    temp_count_odd = 0
+
+    while temp_count_even < input_count_even or temp_count_odd < input_count_odd:
+        if temp_count_even < input_count_even:
+            for nilai in tampung_genap:
+                output_dict[nilai] = tampung_ganjil.pop(nilai)
+                temp_count_even = temp_count_even + 1
+                break
+
+        if temp_count_odd < input_count_odd:
+            for nilai in tampung_ganjil:
+                output_dict[nilai] = tampung_ganjil.pop(nilai)
+                temp_count_odd = temp_count_odd + 1
+                break
+
+    return output_dict 
+
 unyil = create_summary(numbers)
 # print(unyil)
 # print("List yang menampilkan key yang hanya genap")
@@ -185,20 +219,5 @@ unyil = create_summary(numbers)
 # print('')
 # print("List yang menampilkan 11 key ganjil pertama dan 14 key genap pertama")
 # print(shown_first_11_odd_keys_and_first_14_even_keys(unyil, 0, 0))
-print(shown_odd_even_keys_sequentially(unyil, 3, 2))
-
-
-# print(shown_dict_with_more_than_1_in_value(unyil))
-
-# print(create_summary(numbers))
-# print(shown_dict_with_more_than_1_in_value(create_summary(numbers)))
-
-# hasil = create_summary(numbers)
-# print(hasil)
-# print(type(hasil))
-# print(shown_dict_with_more_than_1_in_value(hasil))
-
-
-
-# test = [1,1,2,2,3,4,4,4,5]
-# assert create_summary(test) == {1:2, 2:2, 3:1, 4:3, 5:1}
+# print(shown_odd_even_keys_sequentially(unyil, 3, 2))
+print(shown_even_odd_keys_sequentially(unyil, 4, 3))
