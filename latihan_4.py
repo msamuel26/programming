@@ -138,26 +138,29 @@ def shown_odd_even_keys_sequentially(input_dict, input_count_odd, input_count_ev
     output_dict = {}
 
     tampung_ganjil = shown_only_odd_key(input_dict)
+    print(input_dict)
+    print('')
+    print("List yang menampilkan hanya key ganjil: ")
+    print(tampung_ganjil)
+    print('')
+    print("List yang menampilkan hanya key genap")
     tampung_genap = shown_only_even_key(input_dict)
-
-    ganjil_reversed = dict(reversed(list(tampung_ganjil.items())))
-    genap_reversed = dict(reversed(list(tampung_genap.items())))
-    print(ganjil_reversed)
-    print(genap_reversed)
+    print(tampung_genap)
+    print('')
 
     temp_count_odd = 0
     temp_count_even = 0
 
     while temp_count_odd < input_count_odd or temp_count_even < input_count_even:
         if temp_count_odd < input_count_odd:
-            for nilai in ganjil_reversed:
-                output_dict[nilai] = ganjil_reversed.pop(nilai)
+            for nilai in tampung_ganjil:
+                output_dict[nilai] = tampung_ganjil.pop(nilai)
                 temp_count_odd = temp_count_odd + 1
                 break
         
         if temp_count_even < input_count_even:
-            for nilai in genap_reversed:
-                output_dict[nilai] = genap_reversed.pop(nilai)
+            for nilai in tampung_genap:
+                output_dict[nilai] = tampung_genap.pop(nilai)
                 temp_count_even = temp_count_even + 1
                 break
 
