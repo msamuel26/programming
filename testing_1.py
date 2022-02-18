@@ -1,3 +1,6 @@
+from re import L
+
+
 def testing(input):
     x = {}
     y = input.lower()
@@ -86,16 +89,16 @@ class ShowRanking:
         return results  
 
 a = ShowRanking()
-print(a.ranking([["acong", "math", 10],
- ["badu", "english", 9],
- ["amoy", "science", 9],
- ["acong", "english", 8],
- ["badu", "science", 7],
- ["amoy", "english", 8],
- ["acong", "science", 8],
- ["badu", "math", 7],
- ["amoy", "math", 9]]
-))
+# print(a.ranking([["acong", "math", 10],
+#  ["badu", "english", 9],
+#  ["amoy", "science", 9],
+#  ["acong", "english", 8],
+#  ["badu", "science", 7],
+#  ["amoy", "english", 8],
+#  ["acong", "science", 8],
+#  ["badu", "math", 7],
+#  ["amoy", "math", 9]]
+# ))
 
 class Saring:
     def __init__(self):
@@ -140,5 +143,68 @@ e = Saring2([["acong", "math", 10],
  ["acong", "science", 8],
  ["badu", "math", 7],
  ["amoy", "math", 9]])
-print(e.saring("acong"))
-print(e.saring("badu")) 
+# print(e.saring("acong"))
+# print(e.saring("badu"))
+
+dictOfNames = {
+   7 : 'sam',
+   8: 'john',
+   9: 'mathew',
+   10: 'riti',
+   11 : 'aadi',
+   12 : 'sachin'
+}
+
+def even(elem):
+    if elem[0] % 2 == 0:
+        return True
+
+def filterTheDict(dictObj, callback):
+    newDict = dict()
+    # Iterate over all the items in dictionary
+    for (key, value) in dictObj.items():
+        # Check if item satisfies the given condition then add to new dict
+        if callback((key, value)):
+            newDict[key] = value
+    return newDict
+
+newDict = filterTheDict(dictOfNames, lambda elem : elem[0] % 2 == 0)
+# print('Filtered Dictionary : ')
+# print(newDict)
+
+newDict1 = filterTheDict(dictOfNames, even)
+print(newDict1)
+
+dictOfNames = {
+   7 : 'sam',
+   8: 'john',
+   9: 'mathew',
+   10: 'riti',
+   11 : 'aadi',
+   12 : 'sachin'
+}
+
+class Saring3():
+    def __init__(self):
+        self.output = {}
+
+    def saring(self, input):
+        for key, value in input.items():
+            for i in value:
+                if i == "e":
+                    self.output[key] = value
+        return self.output
+
+y = Saring3()
+print(y.saring(dictOfNames))
+
+class Saring4():
+    def __init__(self):
+        self.dict = {}
+
+    def saring(self, input, nilai):
+        self.dict = {key:value for key, value in input.items() if nilai in value}
+        return self.dict
+
+t = Saring4()
+print(t.saring(dictOfNames, "chin"))
