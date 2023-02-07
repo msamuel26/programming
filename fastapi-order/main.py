@@ -57,7 +57,7 @@ def put_edit(request: Request, order_id: int, item: str, amount: int, customer_i
     return {"message": "Order created successfully"}
 
 
-@app.delete("/delete/{order_id}", response_class=JSONResponse)
+@app.delete("/order/delete/{order_id}", response_class=JSONResponse)
 def delete(order_id: int, db: Session = Depends(get_db)):
     print("ini untuk delete")
     delete_order(db, order_id)
