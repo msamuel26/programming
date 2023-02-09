@@ -13,26 +13,26 @@ from fastapi.responses import JSONResponse
 from database import Base
 from database import SessionLocal
 from database import engine
-from customer import create_customer
-from customer import delete_customer
-from customer import get_customer
-from customer import get_customers
-from customer import update_customer
-from customer import CustomerCreate, Customer
+from model.customer import create_customer
+from model.customer import delete_customer
+from model.customer import get_customer
+from model.customer import get_customers
+from model.customer import update_customer
+from model.customer import CustomerCreate, Customer
 
-from order import create_order
-from order import delete_order
-from order import get_order
-from order import get_orders
-from order import update_order
-from order import OrderCreate, Order
+from model.order import create_order
+from model.order import delete_order
+from model.order import get_order
+from model.order import get_orders
+from model.order import update_order
+from model.order import OrderCreate, Order
 
-from shipping import create_shipping
-from shipping import delete_shipping
-from shipping import get_shipping
-from shipping import get_shippings
-from shipping import update_shipping
-from shipping import ShippingCreate, Shipping
+from model.shipping import create_shipping
+from model.shipping import delete_shipping
+from model.shipping import get_shipping
+from model.shipping import get_shippings
+from model.shipping import update_shipping
+from model.shipping import ShippingCreate, Shipping
 
 Base.metadata.create_all(bind=engine)
 
