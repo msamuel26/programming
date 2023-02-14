@@ -48,9 +48,9 @@ def get_db():
 # Customer
 
 @app.get("/customers/", response_class=JSONResponse)
-def home(request: Request, db: Session = Depends(get_db)):
+async def home(request: Request, db: Session = Depends(get_db), skip: int = 0, limit: int = 100):
     print("ini eksekusi app get/", request)
-    customers = get_customers(db)
+    customers = get_customers(db, skip, limit)
     return JSONResponse(content= [{"id": customer.id, "first_name": customer.first_name, "last_name": customer.last_name, "age": customer.age, "country": customer.country} for customer in customers])
 
 # Define a route to create a new customer in the database
@@ -61,20 +61,20 @@ async def post_add_customer(request: Request, customer: CustomerCreate, db: Sess
     return {"message": "Customer created successfully"}
 
 @app.get("/customer/edit/{customer_id}", response_class=JSONResponse)
-def get_edit(request: Request, customer_id: int, db: Session = Depends(get_db)):
+async def get_edit(request: Request, customer_id: int, db: Session = Depends(get_db)):
     print("ini get edit")
     customer = get_customer(db, customer_id)
     return JSONResponse(content = {"id": customer.id, "first_name": customer.first_name, "last_name": customer.last_name, "age": customer.age, "country": customer.country})
 
 @app.put("/customer/edit/{customer_id}", response_class=JSONResponse)
-def put_edit(request: Request, customer_id: int, first_name: str, last_name: str, age: int, country: str, db: Session = Depends(get_db)):
+async def put_edit(request: Request, customer_id: int, first_name: str, last_name: str, age: int, country: str, db: Session = Depends(get_db)):
     print("ini put edit")
     update_customer(db, customer_id=customer_id, first=first_name, last=last_name, age=age, country=country)
     return {"message": "Customer created successfully"}
 
 
 @app.delete("/customer/delete/{customer_id}", response_class=JSONResponse)
-def delete(customer_id: int, db: Session = Depends(get_db)):
+async def delete(customer_id: int, db: Session = Depends(get_db)):
     print("ini untuk delete")
     delete_customer(db, customer_id)
     return {"message": "Customer deleted successfully"}
@@ -82,9 +82,9 @@ def delete(customer_id: int, db: Session = Depends(get_db)):
 # Order
 
 @app.get("/orders/", response_class=JSONResponse)
-def home(request: Request, db: Session = Depends(get_db)):
+async def home(request: Request, db: Session = Depends(get_db), skip: int = 0, limit: int = 100):
     print("ini eksekusi app get/", request)
-    orders = get_orders(db)
+    orders = get_orders(db, skip, limit)
     return JSONResponse(content= [{"id": order.id, "item": order.item, "amount": order.amount, "customer_id": order.customer_id} for order in orders])
 
 # Define a route to create a new order in the database
@@ -95,20 +95,20 @@ async def post_add_order(request: Request, order: OrderCreate, db: Session = Dep
     return {"message": "Order created successfully"}
 
 @app.get("/order/edit/{order_id}", response_class=JSONResponse)
-def get_edit(request: Request, order_id: int, db: Session = Depends(get_db)):
+async def get_edit(request: Request, order_id: int, db: Session = Depends(get_db)):
     print("ini get edit")
     order = get_order(db, order_id)
     return JSONResponse(content = {"id": order.id, "item": order.item, "amount": order.amount, "customer_id": order.customer_id})
 
 @app.put("/order/edit/{order_id}", response_class=JSONResponse)
-def put_edit(request: Request, order_id: int, item: str, amount: int, customer_id: int, db: Session = Depends(get_db)):
+async def put_edit(request: Request, order_id: int, item: str, amount: int, customer_id: int, db: Session = Depends(get_db)):
     print("ini put edit")
     update_order(db, order_id=order_id, item=item, amount=amount, customer_id=customer_id)
     return {"message": "Order created successfully"}
 
 
 @app.delete("/order/delete/{order_id}", response_class=JSONResponse)
-def delete(order_id: int, db: Session = Depends(get_db)):
+async def delete(order_id: int, db: Session = Depends(get_db)):
     print("ini untuk delete")
     delete_order(db, order_id)
     return {"message": "Order deleted successfully"}
@@ -116,9 +116,9 @@ def delete(order_id: int, db: Session = Depends(get_db)):
 # Shipping
 
 @app.get("/shippings/", response_class=JSONResponse)
-def home(request: Request, db: Session = Depends(get_db)):
+async def home(request: Request, db: Session = Depends(get_db), skip: int = 0, limit: int = 100):
     print("ini eksekusi app get/", request)
-    shippings = get_shippings(db)
+    shippings = get_shippings(db, skip, limit)
     return JSONResponse(content=[{"id": shipping.id, "status": shipping.status, "customer_id": shipping.customer_id} for shipping in shippings])
 
 # Define a route to create a new shipping in the database
@@ -129,20 +129,20 @@ async def post_add_shipping(request: Request, shipping: ShippingCreate, db: Sess
     return {"message": "Shipping created successfully"}
 
 @app.get("/shipping/edit/{shipping_id}", response_class=JSONResponse)
-def get_edit(request: Request, shipping_id: int, db: Session = Depends(get_db)):
+async def get_edit(request: Request, shipping_id: int, db: Session = Depends(get_db)):
     print("ini get edit")
     shipping = get_shipping(db, shipping_id)
     return JSONResponse(content = {"id": shipping.id, "status": shipping.status, "customer_id": shipping.customer_id})
 
 @app.put("/shipping/edit/{shipping_id}", response_class=JSONResponse)
-def put_edit(request: Request, shipping_id: int, status: str, customer_id: int, db: Session = Depends(get_db)):
+async def put_edit(request: Request, shipping_id: int, status: str, customer_id: int, db: Session = Depends(get_db)):
     print("ini put edit")
     update_shipping(db, shipping_id=shipping_id, status=status, customer_id=customer_id)
     return {"message": "Shipping created successfully"}
 
 
 @app.delete("/shipping/delete/{shipping_id}", response_class=JSONResponse)
-def delete(shipping_id: int, db: Session = Depends(get_db)):
+async def delete(shipping_id: int, db: Session = Depends(get_db)):
     print("ini untuk delete")
     delete_shipping(db, shipping_id)
     return {"message": "Shipping deleted successfully"}
