@@ -1,3 +1,4 @@
+import uvicorn 
 import random
 import uuid
 from datetime import timedelta
@@ -146,3 +147,10 @@ async def delete(shipping_id: int, db: Session = Depends(get_db)):
     print("ini untuk delete")
     delete_shipping(db, shipping_id)
     return {"message": "Shipping deleted successfully"}
+
+
+# Kode dibawah ini bertujuan untuk menjalankan uvicorn di program utama (yang sebelumnya dijalankan di luar program utama yaitu
+#   anaconda prompt).
+# " if __name__ == '__main__': " hanya akan dieksekusi jika dijalankan di program utama (yaitu sekarang di main.py)
+if __name__ == '__main__':
+    uvicorn.run(app, host='0.0.0.0', port=80)
