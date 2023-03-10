@@ -29,7 +29,7 @@ async def get_edit(request: Request, customer_id: int):
 async def put_edit(request: Request, customer_id: int, first_name: str, last_name: str, age: int, country: str):
     print("ini put edit")
     update_customer(customer_id=customer_id, first=first_name, last=last_name, age=age, country=country)
-    return {"message": "Customer created successfully"}
+    return {"message": "Customer updated successfully"}
 
 
 @customer_router.delete("/customer/delete/{customer_id}", response_class=JSONResponse)
