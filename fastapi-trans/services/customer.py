@@ -10,8 +10,8 @@ def create_customer(first_name: str, last_name: str, age: int, country: str):
     save(customer)
     return customer
 
-@db
-def get_customer(customer_id: int, db):
+
+def get_customer(customer_id: int, db=SessionMaker()):
     return db.query(CustomerModel).filter(CustomerModel.id == customer_id).first()
 
 @transactional
