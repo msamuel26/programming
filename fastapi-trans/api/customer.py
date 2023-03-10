@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from fastapi.responses import JSONResponse
 
 from services.customer import create_customer, get_customer, update_customer, delete_customer, get_customers
 
