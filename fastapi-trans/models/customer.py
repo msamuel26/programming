@@ -2,7 +2,7 @@ from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy.orm import Session
-from database import Base
+from extensions.database import Base
 
 # Create a SQLAlchemy model for the Customer
 class CustomerModel(Base):
