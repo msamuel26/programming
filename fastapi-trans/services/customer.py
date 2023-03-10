@@ -24,7 +24,6 @@ def update_customer(customer_id: int, first: str, last: str, age: int, country: 
     save(customer)
     return customer
 
-@db
 def get_customers(skip: int = 0, limit: int = 100, db=SessionMaker):
     return db.query(CustomerModel).offset(skip).limit(limit).all()
 
