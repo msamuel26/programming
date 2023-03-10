@@ -11,12 +11,13 @@ def create_customer(db: Session, first_name: str, last_name: str, age: int, coun
     save(customer)
     return customer
 
-def get_customer(db: Session, customer_id: int):
+@db
+def get_customer(customer_id: int):
     return db.query(CustomerModel).filter(CustomerModel.id == customer_id).first()
 
 @transactional
-def update_customer(db: Session, customer_id: int, first: str, last: str, age: int, country: str):
-    customer = get_customer(db, customer_id)
+def update_customer(customer_id: int, first: str, last: str, age: int, country: str):
+    customer = get_customer(customer_id)
     customer.first_name = first
     customer.last_name = last
     customer.age = age
@@ -24,10 +25,11 @@ def update_customer(db: Session, customer_id: int, first: str, last: str, age: i
     save(customer)
     return customer
 
-def get_customers(db: Session, skip: int = 0, limit: int = 100):
+@db
+def get_customers(skip: int = 0, limit: int = 100):
     return db.query(CustomerModel).offset(skip).limit(limit).all()
 
 @transactional
-def delete_customer(db: Session, customer_id: int):
-    customer = get_customer(db, customer_id)
+def delete_customer(customer_id: int):
+    customer = get_customer(customer_id)
     delete(customer)
