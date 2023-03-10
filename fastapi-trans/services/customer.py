@@ -1,6 +1,6 @@
 from decorators.database import transactional
 from models.customer import CustomerModel
-from respositories.customer import save, delete
+from repositories.customer import save, delete
 
 from sqlalchemy.orm import Session
 
