@@ -10,7 +10,7 @@ def create_customer(first_name: str, last_name: str, age: int, country: str):
     return customer
 
 @db
-def get_customer(db, customer_id: int):
+def get_customer(customer_id: int, db):
     return db.query(CustomerModel).filter(CustomerModel.id == customer_id).first()
 
 @transactional
@@ -24,7 +24,7 @@ def update_customer(customer_id: int, first: str, last: str, age: int, country: 
     return customer
 
 @db
-def get_customers(db, skip: int = 0, limit: int = 100):
+def get_customers(skip: int = 0, limit: int = 100, db):
     return db.query(CustomerModel).offset(skip).limit(limit).all()
 
 @transactional
