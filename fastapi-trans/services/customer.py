@@ -1,4 +1,4 @@
-from decorators.database import transactional
+from decorators.database import transactional, db
 from models.customer import CustomerModel
 from repositories.customer import save, delete
 
