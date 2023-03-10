@@ -6,13 +6,13 @@ from sqlalchemy.orm import Session
 
 @transactional
 def create_customer(db: Session, first_name: str, last_name: str, age: int, country: str):
-    customer = Customer(first_name=first_name, last_name=last_name, age=age, country=country)
+    customer = CustomerModel(first_name=first_name, last_name=last_name, age=age, country=country)
     print(customer)
     save(customer)
     return customer
 
 def get_customer(db: Session, customer_id: int):
-    return db.query(Customer).filter(Customer.id == customer_id).first()
+    return db.query(CustomerModel).filter(CustomerModel.id == customer_id).first()
 
 @transactional
 def update_customer(db: Session, customer_id: int, first: str, last: str, age: int, country: str):
@@ -25,7 +25,7 @@ def update_customer(db: Session, customer_id: int, first: str, last: str, age: i
     return customer
 
 def get_customers(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(Customer).offset(skip).limit(limit).all()
+    return db.query(CustomerModel).offset(skip).limit(limit).all()
 
 @transactional
 def delete_customer(db: Session, customer_id: int):
