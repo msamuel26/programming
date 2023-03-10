@@ -1,4 +1,5 @@
 from decorators.database import transactional, db
+from extensions.database import SessionMaker
 from models.customer import CustomerModel
 from repositories.customer import save, delete
 
@@ -24,7 +25,7 @@ def update_customer(customer_id: int, first: str, last: str, age: int, country: 
     return customer
 
 @db
-def get_customers(skip: int = 0, limit: int = 100, db=None):
+def get_customers(skip: int = 0, limit: int = 100, db=SessionMaker):
     return db.query(CustomerModel).offset(skip).limit(limit).all()
 
 @transactional
