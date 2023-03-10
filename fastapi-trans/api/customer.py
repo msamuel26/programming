@@ -2,6 +2,7 @@ from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse
 
 from services.customer import create_customer, get_customer, update_customer, delete_customer, get_customers
+from schemas.customer import CustomerInfo
 
 customer_router = APIRouter()
 
@@ -13,7 +14,7 @@ async def home(request: Request, skip: int = 0, limit: int = 100):
 
 # Define a route to create a new customer in the database
 @customer_router.post("/customers/") 
-async def post_add_customer(request: Request, customer: CustomerCreate):
+async def post_add_customer(request: Request, customer: CustomerInfo):
     print(customer)
     new_customer = create_customer(**customer.dict())
     return {"message": "Customer created successfully"}
