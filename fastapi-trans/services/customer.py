@@ -2,10 +2,8 @@ from decorators.database import transactional, db
 from models.customer import CustomerModel
 from repositories.customer import save, delete
 
-from sqlalchemy.orm import Session
-
 @transactional
-def create_customer(db: Session, first_name: str, last_name: str, age: int, country: str):
+def create_customer(first_name: str, last_name: str, age: int, country: str):
     customer = CustomerModel(first_name=first_name, last_name=last_name, age=age, country=country)
     print(customer)
     save(customer)
