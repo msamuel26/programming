@@ -6,24 +6,30 @@ from schemas.customer import CustomerInfo
 
 customer_router = APIRouter()
 
+
 @customer_router.get("/customers/", response_class=JSONResponse)
 async def home(request: Request, skip: int = 0, limit: int = 100):
     print("ini eksekusi app get/", request)
     customers = get_customers(skip, limit)
     return JSONResponse(content= [{"id": customer.id, "first_name": customer.first_name, "last_name": customer.last_name, "age": customer.age, "country": customer.country} for customer in customers])
 
+
 # Define a route to create a new customer in the database
 @customer_router.post("/customers/") 
 async def post_add_customer(request: Request, customer: CustomerInfo):
     print(customer)
     new_customer = create_customer(**customer.dict())
-    return {"message": "Customer created successfully"}
+    return JSONResponse(content={"id": new_customer.id, "first_name": new_customer.first_name,
+                                 "last_name": new_customer.last_name, "age": new_customer.age,
+                                 "country": new_customer.country})
+
 
 @customer_router.get("/customer/edit/{customer_id}", response_class=JSONResponse)
 async def get_edit(request: Request, customer_id: int):
     print("ini get edit")
     customer = get_customer(customer_id)
     return JSONResponse(content = {"id": customer.id, "first_name": customer.first_name, "last_name": customer.last_name, "age": customer.age, "country": customer.country})
+
 
 @customer_router.put("/customer/edit/{customer_id}", response_class=JSONResponse)
 async def put_edit(request: Request, customer_id: int, first_name: str, last_name: str, age: int, country: str):

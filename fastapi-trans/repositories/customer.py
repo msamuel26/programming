@@ -7,7 +7,8 @@ from models.customer import CustomerModel
 def save(customer, db):
     db.add(customer)
     db.flush()
-    return customer
+    db.refresh(customer)
+    return CustomerInfoID.from_orm(customer)
 
 
 @db

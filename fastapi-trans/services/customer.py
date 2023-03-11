@@ -7,7 +7,7 @@ from repositories.customer import save, update, delete, get, get_all, get_for_up
 def create_customer(first_name: str, last_name: str, age: int, country: str):
     customer = CustomerModel(first_name=first_name, last_name=last_name, age=age, country=country)
     print(customer)
-    save(customer)
+    customer = save(customer)
     return customer
 
 
