@@ -8,6 +8,7 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+
 @app.get("/")
 def root():
     return {'message': 'Moses Transactional <3'}

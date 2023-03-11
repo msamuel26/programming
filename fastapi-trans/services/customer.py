@@ -1,7 +1,7 @@
-from decorators.database import transactional, db
-from extensions.database import SessionMaker
+from decorators.database import transactional
 from models.customer import CustomerModel
-from repositories.customer import save, delete
+from repositories.customer import save, update, delete, get, get_all, get_for_update
+
 
 @transactional
 def create_customer(first_name: str, last_name: str, age: int, country: str):
@@ -10,24 +10,29 @@ def create_customer(first_name: str, last_name: str, age: int, country: str):
     save(customer)
     return customer
 
-@db
-def get_customer(customer_id: int, db):
-    return db.query(CustomerModel).filter(CustomerModel.id == customer_id).first()
+
+@transactional
+def get_customer(customer_id: int):
+    return get(customer_id)
+
 
 @transactional
 def update_customer(customer_id: int, first: str, last: str, age: int, country: str):
-    customer = get_customer(customer_id)
+    customer = get_for_update(customer_id)
     customer.first_name = first
     customer.last_name = last
     customer.age = age
     customer.country = country
-    save(customer)
+    update(customer)
     return customer
 
-def get_customers(skip: int = 0, limit: int = 100, db=SessionMaker()):
-    return db.query(CustomerModel).offset(skip).limit(limit).all()
+
+@transactional
+def get_customers(skip: int = 0, limit: int = 100):
+    return get_all(skip, limit)
+
 
 @transactional
 def delete_customer(customer_id: int):
-    customer = get_customer(customer_id)
+    customer = get_for_update(customer_id)
     delete(customer)

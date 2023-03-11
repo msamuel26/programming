@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 
+
 # Create a Pydantic model for the Customer
 class CustomerInfo(BaseModel):
     first_name: str = Field(..., example="John")
@@ -9,3 +10,7 @@ class CustomerInfo(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class CustomerInfoID(CustomerInfo):
+    id: int
