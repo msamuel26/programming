@@ -22,8 +22,8 @@ def update_account(account_id: int, account_number: str, balance: int, customer_
     account.account_number = account_number
     account.balance = balance
     account.customer_id = customer_id
-    update(account)
-    return account
+    result = update(account)
+    return result
 
 
 @transactional

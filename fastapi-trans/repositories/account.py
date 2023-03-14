@@ -15,6 +15,7 @@ def save(account, db):
 def update(account, db):
     db.add(account)
     db.flush()
+    db.refresh(account)
     return account
 
 
