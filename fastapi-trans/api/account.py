@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse
 
+from pydantic import ValidationError
+
 from schemas.account import AccountInfo
 from schemas.transfer import TransferInfo
 from services.account import create_account, get_account, update_account, \
@@ -47,5 +49,8 @@ async def delete(account_id: int):
 
 @account_router.post(f"/account/transfer/", response_class=JSONResponse)
 async def perform_transfer(transfer: TransferInfo):
-    transfer_account(transfer)
+    try:
+        transfer_account(transfer)
+    except ValidationError as e:
+        return e.errors()
     return {"message": "Amount transferred successfully"}
