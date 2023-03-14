@@ -1,6 +1,7 @@
 from decorators.database import transactional
 from models.account import AccountModel
 from repositories.account import save, update, delete, get, get_all, get_for_update
+from schemas.account import AccountInfo
 from schemas.transfer import TransferInfo
 
 @transactional
@@ -42,6 +43,10 @@ def transfer_account(transfer: TransferInfo): # from_account_id: int, to_account
     from_account = get_for_update(transfer.from_account_id)
     to_account = get_for_update(transfer.to_account_id)
     from_account.balance -= transfer.amount
+
+    # validasi account info, dalam hal ini cek balance
+    AccountInfo.from_orm(from_account)
+
     to_account.balance += transfer.amount
     update(from_account)
     update(to_account)
