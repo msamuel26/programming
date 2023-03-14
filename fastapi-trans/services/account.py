@@ -1,7 +1,7 @@
 from decorators.database import transactional
 from models.account import AccountModel
 from repositories.account import save, update, delete, get, get_all, get_for_update
-
+from schemas.transfer import TransferInfo
 
 @transactional
 def create_account(account_number: str, balance: int, customer_id: int):
@@ -35,3 +35,13 @@ def get_accounts(skip: int = 0, limit: int = 100):
 def delete_account(account_id: int):
     account = get_for_update(account_id)
     delete(account)
+
+
+@transactional
+def transfer_account(transfer: TransferInfo): # from_account_id: int, to_account_id: int, amount: int):
+    from_account = get_for_update(transfer.from_account_id)
+    to_account = get_for_update(transfer.to_account_id)
+    from_account.balance -= transfer.amount
+    to_account.balance += transfer.amount
+    update(from_account)
+    update(to_account)
