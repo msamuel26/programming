@@ -15,6 +15,7 @@ def save(order, db):
 def update(order, db):
     db.add(order)
     db.flush()
+    db.refresh(order)
     return order
 
 

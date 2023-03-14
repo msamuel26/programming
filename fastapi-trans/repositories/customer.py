@@ -15,6 +15,7 @@ def save(customer, db):
 def update(customer, db):
     db.add(customer)
     db.flush()
+    db.refresh(customer)
     return customer
 
 

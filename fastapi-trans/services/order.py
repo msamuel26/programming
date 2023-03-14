@@ -22,8 +22,8 @@ def update_order(order_id: int, item: str, amount: int, customer_id: int):
     order.item = item
     order.amount = amount
     order.customer_id = customer_id
-    update(order)
-    return order
+    result = update(order)
+    return result
 
 
 @transactional

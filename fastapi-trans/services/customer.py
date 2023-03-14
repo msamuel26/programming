@@ -23,8 +23,8 @@ def update_customer(customer_id: int, first: str, last: str, age: int, country: 
     customer.last_name = last
     customer.age = age
     customer.country = country
-    update(customer)
-    return customer
+    result = update(customer)
+    return result
 
 
 @transactional
