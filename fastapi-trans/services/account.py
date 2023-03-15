@@ -3,6 +3,7 @@ from models.account import AccountModel
 from repositories.account import save, update, delete, get, get_all, get_for_update
 from schemas.account import AccountInfo
 from schemas.transfer import TransferInfo
+from services.mutasi import create_mutation
 
 @transactional
 def create_account(account_number: str, balance: int, customer_id: int):
@@ -49,4 +50,7 @@ def transfer_account(transfer: TransferInfo): # from_account_id: int, to_account
 
     to_account.balance += transfer.amount
     update(from_account)
+    create_mutation(from_account.id, -transfer.amount, from_account.balance)
+    
     update(to_account)
+    create_mutation(to_account.id, transfer.amount, to_account.balance)
